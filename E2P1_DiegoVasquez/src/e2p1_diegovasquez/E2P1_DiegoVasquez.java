@@ -84,7 +84,6 @@ public class E2P1_DiegoVasquez extends JFrame implements ActionListener{
             while (rep){
                 System.out.println("""
                                =Menu Numeros=
-                               
                                1.Agregar número
                                2.Eliminar número
                                3.Menu principal""");
@@ -107,6 +106,7 @@ public class E2P1_DiegoVasquez extends JFrame implements ActionListener{
                         Numero num = new Numero(base, numero);
                         numbers.add(num);
                         System.out.println("Numero Agregado Exitosamente!");
+                        System.out.println("");
                         numsAdded++;
                     }
                     break;
@@ -116,8 +116,20 @@ public class E2P1_DiegoVasquez extends JFrame implements ActionListener{
                         }else{
                             System.out.println("Lista de números: ");
                             for (int i = 0; i < numbers.size(); i++) {
-                                System.out.println("1. "+numbers.get(i).getNum()+" base "+numbers.get(i).getBase()+": "+ numbers.get(i).baseToDec());
+                                System.out.println((i+1)+". "+numbers.get(i).getNum()+" base "+numbers.get(i).getBase()+": "+ numbers.get(i).baseToDec());
                             }
+                            System.out.println("");
+                            System.out.println("Ingrese el indice del numero que desea eliminar: ");
+                            int index = lea.nextInt();
+                            while(index <= 0 || index > numbers.size()){
+                                System.out.println("Ese indice no existe... intentelo de nuevo:");
+                                index = lea.nextInt();
+                            }
+                            index--;
+                            numbers.remove(index);
+                            System.out.println("Numero eliminado Exitosamente!");
+                            numsAdded--;
+                            System.out.println("");
                         }
                     }
                     break;
@@ -129,11 +141,135 @@ public class E2P1_DiegoVasquez extends JFrame implements ActionListener{
                         System.out.println("Opcion Invalida");
                     }
                     break;
-                }
-            }
-            
+                }//fin switxh op
+            }//fin while rep
             //cosas de numeros
-        }else if (e.getSource() == boton1){
+        }else if (e.getSource() == boton2){
+            boolean rep = true;
+            while(rep){
+                System.out.println("""
+                                   =Menu Operaciones=
+                                   1.Sumar números
+                                   2.Restar números
+                                   3.Multiplicar números
+                                   4.Menu Principal""");
+                int op = lea.nextInt();
+                switch (op){
+                    case 1:{
+                       System.out.println("Lista de números: ");
+                            for (int i = 0; i < numbers.size(); i++) {
+                                System.out.println((i+1)+". "+numbers.get(i).getNum()+" base "+numbers.get(i).getBase()+": "+ numbers.get(i).baseToDec());
+                            }
+                            System.out.println("");
+                            System.out.println("Ingrese el índice del primer numero: ");
+                            int index1 = lea.nextInt(); 
+                            while(index1 <= 0 || index1 > numbers.size()){
+                                System.out.println("Ese indice no existe... intentelo de nuevo:");
+                                index1 = lea.nextInt();
+                            }//fin validacion
+                            index1--;
+                            System.out.println("Ingrese el índice del segundo numero: ");
+                            int index2 = lea.nextInt(); 
+                            while(index2 <= 0 || index2 > numbers.size()){
+                                System.out.println("Ese indice no existe... intentelo de nuevo:");
+                                index2 = lea.nextInt();
+                            }//fin validacion
+                            index2--;
+                            int num1 = numbers.get(index1).baseToDec();
+                            int num2 = numbers.get(index2).baseToDec();
+                            int suma = (num1+num2);
+                            int bas;
+                            if(numbers.get(index1).getBase() >= numbers.get(index2).getBase()){
+                                bas = numbers.get(index1).getBase();
+                            }else{
+                                bas = numbers.get(index2).getBase();
+                            }//fin if de base
+                            Numero lol = new Numero(bas, suma);
+                            System.out.println("El resultado es: "+lol.getNum()+" base "+lol.getBase()+": "+lol.baseToDec());
+                    }
+                    break;
+                    case 2:{
+                        System.out.println("Lista de números: ");
+                        for (int i = 0; i < numbers.size(); i++) {
+                            System.out.println((i+1)+". "+numbers.get(i).getNum()+" base "+numbers.get(i).getBase()+": "+ numbers.get(i).baseToDec());
+                        }
+                        System.out.println("");
+                        System.out.println("Ingrese el índice del primer numero: ");
+                        int index1 = lea.nextInt(); 
+                        while(index1 <= 0 || index1 > numbers.size()){
+                            System.out.println("Ese indice no existe... intentelo de nuevo:");
+                            index1 = lea.nextInt();
+                        }//fin validacion
+                        index1--;
+                        System.out.println("Ingrese el índice del segundo numero: ");
+                        int index2 = lea.nextInt(); 
+                        while(index2 <= 0 || index2 > numbers.size()){
+                            System.out.println("Ese indice no existe... intentelo de nuevo:");
+                            index2 = lea.nextInt();
+                        }//fin validacion
+                        index2--;
+                        int num1 = numbers.get(index1).baseToDec();
+                        int num2 = numbers.get(index2).baseToDec();
+
+                        int resta = (num1-num2);
+                        int bas;
+                        if(num1 >= num2){
+                            if(numbers.get(index1).getBase() >= numbers.get(index2).getBase()){
+                                bas = numbers.get(index1).getBase();
+                            }else{
+                                bas = numbers.get(index2).getBase();
+                            }//fin if de base
+                            Numero lol = new Numero(bas, resta);
+                            System.out.println("El resultado es: "+lol.getNum()+" base "+lol.getBase()+": "+lol.baseToDec());
+                        }else{
+                            System.out.println("Su Resta es !NEGATIVA¡");
+                        }//fin if 
+                    }//fin case 2
+                    break;
+                    case 3:{
+                        System.out.println("Lista de números: ");
+                        for (int i = 0; i < numbers.size(); i++) {
+                            System.out.println((i+1)+". "+numbers.get(i).getNum()+" base "+numbers.get(i).getBase()+": "+ numbers.get(i).baseToDec());
+                        }
+                        System.out.println("");
+                        System.out.println("Ingrese el índice del primer numero: ");
+                        int index1 = lea.nextInt(); 
+                        while(index1 <= 0 || index1 > numbers.size()){
+                            System.out.println("Ese indice no existe... intentelo de nuevo:");
+                            index1 = lea.nextInt();
+                        }//fin validacion
+                        index1--;
+                        System.out.println("Ingrese el índice del segundo numero: ");
+                        int index2 = lea.nextInt(); 
+                        while(index2 <= 0 || index2 > numbers.size()){
+                            System.out.println("Ese indice no existe... intentelo de nuevo:");
+                            index2 = lea.nextInt();
+                        }//fin validacion
+                        index2--;
+                        int num1 = numbers.get(index1).baseToDec();
+                        int num2 = numbers.get(index2).baseToDec();
+                        int mult = (num1*num2);
+                        int bas;
+                        if(numbers.get(index1).getBase() >= numbers.get(index2).getBase()){
+                            bas = numbers.get(index1).getBase();
+                        }else{
+                            bas = numbers.get(index2).getBase();
+                        }//fin if de base
+                        Numero lol = new Numero(bas, mult);
+                        System.out.println("El resultado es: "+lol.getNum()+" base "+lol.getBase()+": "+lol.baseToDec());
+                    }
+                    break;
+                    case 4:{
+                        rep = false;
+                    }
+                    break;
+                    default:{
+                        System.out.println("Opcion invalida");
+                    }
+                    break;
+                }//fin switch
+                
+            }//fin while rep
             //cosas de operaciones
         }else if(e.getSource() == boton3){
             System.exit(0);

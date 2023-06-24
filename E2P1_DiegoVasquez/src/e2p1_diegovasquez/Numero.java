@@ -43,7 +43,9 @@ public class Numero {
         
     }
     public int charToNum(char char_acon){
-        
+        int Ascii = char_acon;
+        int num = (Ascii-87);
+        return num;
     }
     //convierte el num a string (el mismo num pero en base al numero)
     public String decToBase(int decNum){
@@ -83,15 +85,21 @@ public class Numero {
         return conv;
         
     }
-    
+    //convierte el string a num original
     public int baseToDec(){
         //se usa la string Num
         int acum = 0;
+
         for (int i = 0; i < Num.length(); i++) {
-            //acum += (Num.charAt(i)*(Math.pow(Base, Num.length()-1-i)));
-            
-            System.out.println(acum);
-        }
+            int loc = Num.charAt(i);
+            if(loc >= 48 && loc <= 57){
+                int num = Character.getNumericValue(Num.charAt(i));
+                acum += num*(Math.pow(Base, Num.length()-1-i));
+            }else{
+                int num = (int)charToNum(Num.charAt(i));
+                acum += num*(Math.pow(Base, Num.length()-1-i));
+            }//fin if
+        }//fin for
         return acum;
     }
     
